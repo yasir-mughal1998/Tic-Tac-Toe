@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<script>
+		var turn = 1;
+		var movesCount=0;
+		var isWin=false;
+
+		function mark(m){
+			if(isAlreadyMarked(m)&&isWin==false){
+				alert("Box is Already Marked Choose Different");
+				return;
+			}
+			if(!isWin){
+				
+				if(turn===1)
+				{
+					m.innerHTML="X";
+					turn =2;
+				}
+				else
+				{
+					m.innerHTML="O";
+					turn =1;
+				}
+				win();
+				if(++movesCount==9 && isWin==false)
+					document.getElementById("gameWin").innerHTML = "Game Draw";
+			}
+		}
+
+		function isAlreadyMarked(m){
+			if(m.innerHTML == "")
+				return false;
+			return true;
+		}
+	
+		function win(){
+
+			if( (document.getElementById("1").innerHTML =='X' && document.getElementById("2").innerHTML=='X'&& document.getElementById("3").innerHTML=='X')||
+				(document.getElementById("4").innerHTML =='X' && document.getElementById("5").innerHTML=='X'&& document.getElementById("6").innerHTML=='X')||
+				(document.getElementById("7").innerHTML =='X' && document.getElementById("8").innerHTML=='X'&& document.getElementById("9").innerHTML=='X')||
+				(document.getElementById("1").innerHTML =='X' && document.getElementById("4").innerHTML=='X'&& document.getElementById("7").innerHTML=='X')||
+				(document.getElementById("2").innerHTML =='X' && document.getElementById("5").innerHTML=='X'&& document.getElementById("8").innerHTML=='X')||
+				(document.getElementById("3").innerHTML =='X' && document.getElementById("6").innerHTML=='X'&& document.getElementById("9").innerHTML=='X')||
+				(document.getElementById("1").innerHTML =='X' && document.getElementById("5").innerHTML=='X'&& document.getElementById("9").innerHTML=='X')||
+				(document.getElementById("3").innerHTML =='X' && document.getElementById("5").innerHTML=='X'&& document.getElementById("7").innerHTML=='X'))
+			{
+				isWin=true;
+				document.getElementById("gameWin").innerHTML = "Player 1 Win";
+			}
+			else if( 
+				(document.getElementById("1").innerHTML =='O' && document.getElementById("2").innerHTML=='O'&& document.getElementById("3").innerHTML=='O')||
+				(document.getElementById("4").innerHTML =='O' && document.getElementById("5").innerHTML=='O'&& document.getElementById("6").innerHTML=='O')||
+				(document.getElementById("7").innerHTML =='O' && document.getElementById("8").innerHTML=='O'&& document.getElementById("9").innerHTML=='O')||
+				(document.getElementById("1").innerHTML =='O' && document.getElementById("4").innerHTML=='O'&& document.getElementById("7").innerHTML=='O')||
+				(document.getElementById("2").innerHTML =='O' && document.getElementById("5").innerHTML=='O'&& document.getElementById("8").innerHTML=='O')||
+				(document.getElementById("3").innerHTML =='O' && document.getElementById("6").innerHTML=='O'&& document.getElementById("9").innerHTML=='O')||
+				(document.getElementById("1").innerHTML =='O' && document.getElementById("5").innerHTML=='O'&& document.getElementById("9").innerHTML=='O')||
+				(document.getElementById("3").innerHTML =='O' && document.getElementById("5").innerHTML=='O'&& document.getElementById("7").innerHTML=='O'))
+			{
+				isWin=true;	
+				document.getElementById("gameWin").innerHTML = "Player 2 Win";
+			}
+		}
+
+		function resetGame(){
+			location.reload();		
+		}
+
+	</script>
+
+	<div id="box">
+	  <header>
+	    <h1>Tic Tac Toe</h1>
+	  </header>
+	  <h2>PLAYER 1 = X <br> PLAYER 2 = O</h2>
+	  <p id = "gameWin" style = "font-size: 18px; font-weight:  
+           bold; color: tomato; margin-left: 120px "></p>
+	  <ul id="gameBoard">
+	    <li class="tick" id="1" onclick="mark(this)"></li>
+	    <li class="tick" id="2" onclick="mark(this)"></li>
+	    <li class="tick" id="3" onclick="mark(this)"></li>
+	    <li class="tick" id="4" onclick="mark(this)"></li>
+	    <li class="tick" id="5" onclick="mark(this)"></li>
+	    <li class="tick" id="6" onclick="mark(this)"></li>
+	    <li class="tick" id="7" onclick="mark(this)"></li>
+	    <li class="tick" id="8" onclick="mark(this)"></li>
+	    <li class="tick" id="9" onclick="mark(this)"></li>
+	    </ul>
+
+	  <footer>
+	    <button onclick="resetGame()" id="reset">Reset Game</button>
+	  </footer>
+	</div>
+
+
+</body>
+
+
+<style>
+	body{
+	  background: linear-gradient(to bottom left, #000066 25%, #006666 75%);
+	}
+	h2{
+		font-size:100%;
+	  text-align: center;
+	  color: white;
+	  font-family: Courier;
+	}
+
+	h1 {
+	  font-size:230%;
+	  text-align: center;
+	  color: Tomato;
+	  font-family: Courier;
+	}
+    
+	#box{
+	  width: 350px;
+	  margin: 150px auto;
+	  background: #13001a;
+	  padding-bottom: 30px;
+	  padding-top: 5px;
+	  border-radius: 10px;
+	 box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);	  
+	}
+
+
+	#gameBoard li{
+	  float: left;
+	  font-family: century gothic;
+	  margin: 10px;
+	  height: 70px;
+	  width: 70px;
+	  font-weight: 700;
+	  font-size: 55px;
+	  background: #666666;
+	  color: white;
+	  list-style: none;
+	  text-align: center;
+	  border-radius: 10px;
+	}
+
+	#gameBoard li:hover{
+	  cursor: pointer;
+	  background: #363030;
+	}
+	 
+	#reset:hover{
+	  cursor: pointer;
+	  background: #1c1717;
+	}
+
+	#reset{
+	  border: 0;
+	  background: #333333;
+	  color: white;
+	  width: 70%;
+	  padding: 15px;
+	  border-radius: 10px;
+	  margin:10px;
+	}
+
+	footer{
+	  text-align: center;
+	  padding-top: 20px;
+	}
+
+</style>
+
+</html>
